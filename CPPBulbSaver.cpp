@@ -11,18 +11,25 @@ void printHeader() {
     // (note: you may have to contact power company)
 }
 
-void printResults() {
+void printResults( double monthlyCost, double afterMonthlyCost,double payOffCost, double monthlyKWH, double afterMonthlyKWH) {
+    
+    double howLong = payOffCost / (monthlyCost - afterMonthlyCost);
     std::cout << "Electricity Costs " << std::endl;
-    std::cout << "Current cost is: $" << std::endl;
-    std::cout << "LED Bulb cost would be approx: $" << std::endl;
-    std::cout << "Savings" << std::endl;
+    std::cout << "----------------- " << std::endl;
+    std::cout << "Current cost is: $" << monthlyCost << std::endl;
+    std::cout << "LED Bulb cost would be approx: $" << afterMonthlyCost << std::endl;
+    std::cout << "Savings $" << monthlyCost - afterMonthlyCost << std::endl;
+    std::cout << std::endl << std::endl;
     std::cout << "Payback Timeline" << std::endl;
-    std::cout << "Total Replacement Cost $" << std::endl;
-    std::cout << "Payoff Period " << std::endl;
+    std::cout << "----------------- " << std::endl;
+    std::cout << "Total Replacement Cost $" << payOffCost << std::endl;
+    std::cout << "Payoff Period " << howLong << " Months" << std::endl;
+    std::cout << std::endl << std::endl;
     std::cout << "Electrical Usage " << std::endl;
-    std::cout << "Before Replacing Lamps " << std::endl;
-    std::cout << "After Replacing Lamps " << std::endl;
-    std::cout << "Savings " << std::endl;
+    std::cout << "----------------- " << std::endl;
+    std::cout << "Before Replacing Lamps " << monthlyKWH << " KWH" << std::endl;
+    std::cout << "After Replacing Lamps " << afterMonthlyKWH << " KWH" << std::endl;
+    std::cout << "Savings " << monthlyKWH - afterMonthlyKWH << " KWH" << std::endl;
 }
 
 void calculating() {
@@ -67,7 +74,35 @@ double howManyHoursUsed() {
     return howManyHours;
 }
 
+void calculate(double powerCostRate, int howManyBulbsUsed, double howManyHours, int currentWatts, int replacementWatts, double bulbCosts) {
+    double currCost;
+    double ledApprox;
+    
+    double fixtWatts = currentWatts * howManyBulbsUsed; // how many watts total
 
+    double kwh = fixtWatts * howManyHours / 1000;
+    double monthlyKWH = kwh * 30;
+
+    double aftFixtWatts = replacementWatts * howManyBulbsUsed; // how many watts total
+    double afterKwh = aftFixtWatts * howManyHours / 1000;
+    double afterMonthlyKWH = afterKwh * 30;
+
+    currCost = kwh * powerCostRate;
+    double monthlyCost = monthlyKWH * powerCostRate;
+    double afterMonthlyCost = afterMonthlyKWH * powerCostRate;
+
+    double payOffCost =  bulbCosts* howManyBulbsUsed;
+    // Prints the calculated results
+    printResults( monthlyCost, afterMonthlyCost, payOffCost, monthlyKWH, afterMonthlyKWH);
+}
+
+double howMuchNewBulbCost() {
+    std::cout << std::endl << std::endl << std::endl;
+    std::cout << "How much will the led bulbs cost? > " << std::flush;
+    double ledBulbCost;
+    std::cin >> ledBulbCost;
+    return ledBulbCost;
+}
 int main()
 {
     // Prints opening header 
@@ -82,27 +117,12 @@ int main()
     int currentWatts = howManyWattsCurrently();
     // This line will get replacement bulb wattage
     int replacementWatts = howManyWattsNewBulbs();
-
+    
+    double bulbCosts = howMuchNewBulbCost();
 
     // Prints the message Calculating...
     calculating();
-    // Prints the calculated results
-    printResults();
-   
+    calculate(powerCostRate, howManyBulbsUsed, howManyHours, currentWatts, replacementWatts, bulbCosts);
 
-    // double currCost;
-    // double ledApprox;
 
-    //double fixtWatts = watts * howManyB; // how many watts total
-
-    //double kwh = fixtWatts * howManyh / 1000;
-    //double monthlyKWH = kwh * 30;
-
-    //double aftFixtWatts = Convert.ToDouble(tbRepWatts.Text) * howManyB; // how many watts total
-    //double afterKwh = aftFixtWatts * howManyh / 1000;
-    //double afterMonthlyKWH = afterKwh * 30;
-
-    //currCost = kwh * rate;
-    //double monthlyCost = monthlyKWH * rate;
-    //double afterMonthlyCost = afterMonthlyKWH * rate;
 }
