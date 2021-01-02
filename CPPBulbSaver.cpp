@@ -2,11 +2,13 @@
 //
 
 #include <iostream>
+#include<Windows.h>
 
 
 void printHeader() {
     std::cout << std::endl << "This console app is to determine cost savings to switch to LED bulbs" << std::endl;
     std::cout << "====================================================================" << std::endl;
+    // (note: you may have to contact power company)
 }
 
 void printResults() {
@@ -26,41 +28,70 @@ void printResults() {
 void calculating() {
     std::cout << std::endl << std::endl;
     std::cout << "Calculating .... " << std::endl;
+    Sleep(1000);
 }
 
-int main()
-{
-    // (note: you may have to contact power company)
-    printHeader();
-
+double powerRate() {
     std::cout << std::endl << std::endl << std::endl;
     std::cout << "First, what is your power rate? > " << std::flush;
     double powerRate;
     std::cin >> powerRate;
-    
+    return powerRate;
+}
+
+int howManyBulbs() {
     std::cout << "How many light bulbs? > " << std::flush;
     int howManyBulbs;
     std::cin >> howManyBulbs;
+    return howManyBulbs;
+}
 
-    std::cout << "How many hours used? > " << std::flush;
-    double howManyHours;
-    std::cin >> howManyHours;
-
+int howManyWattsCurrently() {
     std::cout << "How many watts are current bulbs? > " << std::flush;
     int currentWatts;
-    std::cin >> currentWatts;
+    std::cin >> currentWatts; 
+    return currentWatts;
+}
 
+int howManyWattsNewBulbs() {
     std::cout << "How many watts will the new bulbs be? > " << std::flush;
     int replacementWatts;
     std::cin >> replacementWatts;
+    return replacementWatts;
+}
 
-  
+double howManyHoursUsed() {
+    std::cout << "How many hours used? > " << std::flush;
+    double howManyHours;
+    std::cin >> howManyHours;
+    return howManyHours;
+}
+
+
+int main()
+{
+    // Prints opening header 
+    printHeader();
+    // This line gets the power cost rate
+    double powerCostRate = powerRate() ;
+    // This line returns how many lightbulbs
+    int howManyBulbsUsed = howManyBulbs();
+    // This line gets how many hours used
+    double howManyHours = howManyHoursUsed();
+    // This line will get current bulb wattage
+    int currentWatts = howManyWattsCurrently();
+    // This line will get replacement bulb wattage
+    int replacementWatts = howManyWattsNewBulbs();
+
+
+    // Prints the message Calculating...
     calculating();
+    // Prints the calculated results
     printResults();
    
 
-    double currCost;
-    double ledApprox;
+    // double currCost;
+    // double ledApprox;
 
     //double fixtWatts = watts * howManyB; // how many watts total
 
