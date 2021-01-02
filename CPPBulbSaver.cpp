@@ -4,12 +4,34 @@
 #include <iostream>
 
 
+void printHeader() {
+    std::cout << std::endl << "This console app is to determine cost savings to switch to LED bulbs" << std::endl;
+    std::cout << "====================================================================" << std::endl;
+}
+
+void printResults() {
+    std::cout << "Electricity Costs " << std::endl;
+    std::cout << "Current cost is: $" << std::endl;
+    std::cout << "LED Bulb cost would be approx: $" << std::endl;
+    std::cout << "Savings" << std::endl;
+    std::cout << "Payback Timeline" << std::endl;
+    std::cout << "Total Replacement Cost $" << std::endl;
+    std::cout << "Payoff Period " << std::endl;
+    std::cout << "Electrical Usage " << std::endl;
+    std::cout << "Before Replacing Lamps " << std::endl;
+    std::cout << "After Replacing Lamps " << std::endl;
+    std::cout << "Savings " << std::endl;
+}
+
+void calculating() {
+    std::cout << std::endl << std::endl;
+    std::cout << "Calculating .... " << std::endl;
+}
 
 int main()
 {
     // (note: you may have to contact power company)
-    std::cout << std::endl << "This console app is to determine cost savings to switch to LED bulbs" << std::endl;
-    std::cout << "====================================================================" << std::endl;
+    printHeader();
 
     std::cout << std::endl << std::endl << std::endl;
     std::cout << "First, what is your power rate? > " << std::flush;
@@ -32,20 +54,10 @@ int main()
     int replacementWatts;
     std::cin >> replacementWatts;
 
-    std::cout << std::endl << std::endl;
-    std::cout << "Calculating .... " << std::endl;
-    
-    std::cout << "Electricity Costs " << std::endl;
-    std::cout << "Current cost is: $" << std::endl;
-    std::cout << "LED Bulb cost would be approx: $" << std::endl;
-    std::cout << "Savings" << std::endl;
-    std::cout << "Payback Timeline" << std::endl;
-    std::cout << "Total Replacement Cost $" << std::endl;
-    std::cout << "Payoff Period " << std::endl;
-    std::cout << "Electrical Usage " << std::endl;
-    std::cout << "Before Replacing Lamps " << std::endl;
-    std::cout << "After Replacing Lamps " << std::endl;
-    std::cout << "Savings " << std::endl;
+  
+    calculating();
+    printResults();
+   
 
     double currCost;
     double ledApprox;
@@ -62,6 +74,4 @@ int main()
     //currCost = kwh * rate;
     //double monthlyCost = monthlyKWH * rate;
     //double afterMonthlyCost = afterMonthlyKWH * rate;
-
-
 }
