@@ -1,6 +1,11 @@
 // CPPBulbSaver.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
+/// Robert Wood Jr.
+/// 1/5/2021
+/// Bulb Saver App 
+/// Converted this app I wrote previously from C# to C++ for practice with C++
+/// 
 #include <iostream>
 #include<Windows.h>
 
